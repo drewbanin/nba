@@ -1,5 +1,9 @@
+alter table traditional_boxscores add column score double;
 
-select 
+update traditional_boxscores as q
+join
+
+(select 
 *,
 (points * 1) + (field_goal_3_made * 0.5) + (rebounds * 1.25) + (assists * 1.5) + (steals * 2) + (blocks * 2) + (turnovers * -0.5) + (double_double * 1.5) + (triple_double * 3) as score
 from (
@@ -30,4 +34,7 @@ select
 from traditional_boxscores
 ) s
 )s2
-)s3 limit 1000
+)s3 
+) final
+on final.player_id = q.player_id and final.game_id = q.game_id and final.team_id = q.team_id
+set q.score = final.score
