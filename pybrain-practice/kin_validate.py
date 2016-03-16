@@ -12,7 +12,7 @@ validation_file = 'data/validation.csv'
 output_model_file = 'model_val.pkl'
 
 hidden_size = 100
-epochs = 1000
+epochs = 200
 continue_epochs = 10  
 validation_proportion = 0.15
 
